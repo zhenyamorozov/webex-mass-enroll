@@ -1,5 +1,5 @@
 """Simple but useful script to mass enroll users into a Webex space.
-Set your accessToken, roomId, and provide a list of emails to enroll.
+Set your accessToken, roomId, and provide emails to enroll as a list, or as a string one email per line
 """
 
 accessToken = "your access token"
@@ -10,6 +10,15 @@ emails = [
     "user2@example.com",
 ]
 
+emails = """
+user1@example.com
+
+user2@example.com
+"""
+
+
+if type(emails) == str:
+    emails = list(filter(lambda s: s, map(lambda s: s.strip(), emails.splitlines())))
 
 import requests
 
